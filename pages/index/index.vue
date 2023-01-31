@@ -174,7 +174,7 @@
 	}
 </script>
 
-<style lang="less">
+<style lang="scss">
 	.content {
 		display: flex;
 		flex-direction: column;
