@@ -1,8 +1,10 @@
 <template>
 	<div class="content">
 		<div class="header">
+			{{ currentIndex }}
 			<button size="mini"  @click="handleToogleAudio" :type="autoplay?'primary':'default'">{{autoplay?'已开':'已关'}}音频</button>
 			<button size="mini"  @click="handleToogleRandom" :type="isRandom?'primary':'default'">{{isRandom?'已开':'已关'}}随机</button>
+			<input type="text" @blur="handleChapte" :placeholder="`${isChapte?'已开':'已关'}章节`">
 		</div>
 		<div class="text-area">
 			<p class="title text" @click="handleClip(currentItem.name)">{{currentItem.name}}</p>
@@ -36,7 +38,8 @@
 				audioIndex: 0,
 				autoplay: false,
 				innerAudioContext: null,
-				isRandom: false,		
+				isRandom: false,
+				isChapte:false
 			}
 		},
 		onLoad() {
@@ -95,7 +98,7 @@
 					this.currentIndex =  this.currentIndex - 1 < 0? this.dict.length - 1 : --this.currentIndex
 				}				
 				this.autoplay && this.playAudio()
-				uni.setStorageSync(CURRENT_KEY,this.currentIndex)
+				!this.isChapte && uni.setStorageSync(CURRENT_KEY,this.currentIndex)
 			},
 			getCurrentKey() {
 				this.currentIndex = uni.getStorageSync(CURRENT_KEY) || 0 
@@ -106,8 +109,20 @@
 			handleToogleRandom() {
 				this.isRandom = !this.isRandom
 				if(!this.isRandom) {
+					this.isChapte = false
 					this.getCurrentKey()
 				}
+			},
+			handleChapte(event) {
+				this.isChapte = true
+				for (let index = 0; index < this.dict.length; index++) {
+					const item = this.dict[index]
+					if(+item.chapte === +event.detail.value) {
+						this.currentIndex = index
+						break
+					}					
+				}
+				event.detail.value = ''
 			},
 			handleClip(data) {				
 				uni.setClipboardData({

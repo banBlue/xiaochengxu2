@@ -28,7 +28,14 @@ export default {
       this.name = this.trans = this.root = this.associate = ''
     },
     add () {
-      
+      // arr = []
+//       JSON.stringify(arr.map(item => {
+// 	return {
+// 	 "chapte":"3",
+// 	 ...item
+// 	 }
+// })
+// )
       if(this.name && this.trans)  {
         this.focus =false
         const obj = {
