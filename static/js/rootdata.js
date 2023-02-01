@@ -36,4 +36,25 @@
     "r": "bene",
     "desc": "好",
   },
+
+  {
+    "chapte": "9",
+    "r": "vert=vers",
+    "desc": "转",
+  },
+  {
+    "chapte": "9",
+    "r": "uni",
+    "desc": "一",
+  },
+  {
+    "chapte": "9",
+    "r": "ann",
+    "desc": "年",
+  },
+  {
+    "chapte": "9",
+    "r": "opt",
+    "desc": "采用",
+  },
 ]
