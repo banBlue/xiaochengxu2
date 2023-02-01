@@ -4,9 +4,10 @@
 			{{ currentIndex }}
 			<button size="mini"  @click="handleToogleAudio" :type="autoplay?'primary':'default'">{{autoplay?'已开':'已关'}}音频</button>
 			<button size="mini"  @click="handleToogleRandom" :type="isRandom?'primary':'default'">{{isRandom?'已开':'已关'}}随机</button>
+			<button size="mini"  @click="handleLight" :type="light?'primary':'default'">{{light?'开了灯':'关了灯'}}</button>
 			<input type="text" @blur="handleChapte" :placeholder="`${isChapte?'已开':'已关'}章节`">
 		</div>
-		<div class="text-area">
+		<div class="text-area" :class="light?'open':''">
 			<p class="title text" @click="handleClip(currentItem.name)">{{currentItem.name}}</p>
 			<p class="trans text">{{ currentItem.trans }}</p>
 			<p class="root text" >{{currentItem.root}}</p>
@@ -39,7 +40,8 @@
 				autoplay: false,
 				innerAudioContext: null,
 				isRandom: false,
-				isChapte:false
+				isChapte:false,
+				light:false,
 			}
 		},
 		onLoad() {
@@ -105,6 +107,9 @@
 			},
 			handleToogleAudio() {
 				this.autoplay = !this.autoplay
+			},
+			handleLight() {
+				this.light = !this.light
 			},
 			handleToogleRandom() {
 				this.isRandom = !this.isRandom
@@ -212,6 +217,9 @@
 
 	.text-area {
 		opacity: 0.1;
+		&.open {
+			opacity: 1;
+		}
 		>.text {
 			margin-bottom: 15px;
 			font-size: 20px;
@@ -247,6 +255,7 @@
 
 	.title {
 		font-size: 36rpx;
-		color: #8f8f94;
+		// color: #8f8f94;
+		color:black;
 	}
 </style>
