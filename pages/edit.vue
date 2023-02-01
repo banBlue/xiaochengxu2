@@ -3,8 +3,11 @@
     <input :focus="focus" id="input-name" class="uni-input" ref="refName" placeholder="name" v-model="name" confirm-type="search" @confirm="add"/>
     <input  class="uni-input" placeholder="trans" v-model="trans" confirm-type="search" @confirm="add"/>
     <input class="uni-input" placeholder="root" v-model="root" confirm-type="search" @confirm="add"/>
-    <input class="uni-input" placeholder="associate" v-model="associate" confirm-type="search" @confirm="add"/>
+    <input class="uni-input" placeholder="associate" v-model="associate" confirm-type="search" @confirm="add"/>      
     <button @click="add">d</button>
+
+    <input class="uni-input" placeholder="chapte" v-model="chapte" confirm-type="search"/>  
+
   </div>
 </template>
 
@@ -20,6 +23,7 @@ export default {
       trans: '',
       root: '',
       associate: '',
+      chapte: '',
       focus:false
     }
   },
@@ -28,7 +32,7 @@ export default {
       this.name = this.trans = this.root = this.associate = ''
     },
     add () {
-      // arr = []
+//       // arr = []
 //       JSON.stringify(arr.map(item => {
 // 	return {
 // 	 "chapte":"3",
@@ -42,7 +46,8 @@ export default {
           name: this.name,
           trans: this.trans,
           root: this.root,
-          associate: this.associate
+          associate: this.associate,
+          chapte: this.chapte || ''
         }
         const data = JSON.parse(uni.getStorageSync(CURRENT_KEY) || '[]')
         data.push(obj)

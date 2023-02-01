@@ -1,11 +1,6 @@
 [
   {
     "chapte": "7",
-    "r": "",
-    "desc": "",
-  },
-  {
-    "chapte": "7",
     "r": "a",
     "desc": "去,离开",
   },
@@ -28,5 +23,17 @@
     "chapte": "7",
     "r": "quir=quest",
     "desc": "寻求",
+  },
+
+
+  {
+    "chapte": "8",
+    "r": "fact=fect=fit=fic=fig",
+    "desc": "做",
+  },
+  {
+    "chapte": "8",
+    "r": "bene",
+    "desc": "好",
   },
 ]
