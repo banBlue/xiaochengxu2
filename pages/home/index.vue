@@ -49,7 +49,8 @@
 				isChapte:false,
 				light:false,
 				indexedList: [],
-				showDialogDrawer: false
+				showDialogDrawer: false,
+				concatSign: `          `
 			}
 		},
 		onLoad() {
@@ -74,13 +75,13 @@
 				let arr = []
 				this.dict.forEach(item => {
 					if(letter && letter === item.chapte) {
-						arr[arr.length-1].data.push(`${item.name}   ${item.trans}`)
+						arr[arr.length-1].data.push(`${item.name}${this.concatSign}${item.trans}`)
 					}else {
 						letter = item.chapte
 						arr.push({
 							"letter": item.chapte,
 							"data": [
-								`${item.name}   ${item.trans}`
+								`${item.name}${this.concatSign}${item.trans}`
 							]
 						})
 					}
@@ -90,7 +91,10 @@
 			handledRawerChange(data) {
 				this.showDialogDrawer = data
 			},
-			bindClick() {},
+			bindClick(e) {
+				this.isChapte = true
+				this.handleNext(Number(e.item.itemIndex))
+			},
 			showDrawer() {
 				console.log('this.$refs.showRight',this.$refs.showRight)
 				this.$refs.showRight.open();
@@ -124,21 +128,28 @@
 					console.log(res.errCode);
 				});
 			},
-			handleNext(type) {
-				
+			handleNext(type) {								
+
 				if(this.isRandom) { // 随机模式
 					this.currentIndex = Math.floor(Math.random()*this.dict.length)
 					this.autoplay && this.playAudio()
 					return
 				}
 
-				if(type === 'next') {
-					this.currentIndex = this.currentIndex + 1 >= this.dict.length ? 0 : ++this.currentIndex
-				} else {
-					this.currentIndex =  this.currentIndex - 1 < 0? this.dict.length - 1 : --this.currentIndex
-				}				
+				if(typeof type === 'string') {
+					if(type === 'next') {
+						this.currentIndex = this.currentIndex + 1 >= this.dict.length ? 0 : ++this.currentIndex
+					} else {
+						this.currentIndex =  this.currentIndex - 1 < 0? this.dict.length - 1 : --this.currentIndex
+					}		
+				}
+
+				if(typeof type === 'number') {
+					this.currentIndex = type
+				}
+						
 				this.autoplay && this.playAudio()
-				!this.isChapte && uni.setStorageSync(CURRENT_KEY,this.currentIndex)
+				!this.showDialogDrawer && !this.isChapte && uni.setStorageSync(CURRENT_KEY,this.currentIndex)
 			},
 			getCurrentKey() {
 				this.currentIndex = uni.getStorageSync(CURRENT_KEY) || 0 
