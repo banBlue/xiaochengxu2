@@ -1,7 +1,7 @@
 <template>
 	<div class="content">
 		<div class="header">
-			{{ currentIndex }}
+			{{ currentIndex }} -{{ dict.length }}
 			<button size="mini"  @click="handleToogleAudio" :type="autoplay?'primary':'default'">{{autoplay?'已开':'已关'}}音频</button>
 			<button size="mini"  @click="handleToogleRandom" :type="isRandom?'primary':'default'">{{isRandom?'已开':'已关'}}随机</button>
 			<button size="mini"  @click="handleLight" :type="light?'primary':'default'">{{light?'开了灯':'关了灯'}}</button>
