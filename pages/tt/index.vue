@@ -5,8 +5,8 @@
 			<button size="mini"  @click="handleToogleAudio" :type="autoplay?'primary':'default'">{{autoplay?'已开':'已关'}}音频</button>
 			<button size="mini"  @click="handleToogleRandom" :type="isRandom?'primary':'default'">{{isRandom?'已开':'已关'}}随机</button>
 			<button size="mini"  @click="handleLight" :type="light?'primary':'default'">{{light?'开了灯':'关了灯'}}</button>
-			<input type="text" @blur="handleChapte" :placeholder="`${isChapte?'已开':'已关'}章节`">
 			<button size="mini" @click="showDrawer">抽屉</button>
+			<input type="text" @blur="handleChapte" :placeholder="`${isChapte?'已开':'已关'}节`">			
 		</div>
 		<div class="text-area" :class="light?'open':''">
 			<p class="title text" @click="handleClip(currentItem.name)">{{currentItem.name}}</p>
@@ -21,8 +21,8 @@
 		</div>
 
 		<!-- 抽屉 -->
-		<uni-drawer  ref="showRight" mode="right" :mask-click="true" width="300">
-			<uni-indexed-list v-if="indexedList.length" :options="indexedList" @click="bindClick"></uni-indexed-list>
+		<uni-drawer  ref="showRight" mode="right" :mask-click="true" width="300" @change="handledRawerChange">
+			<uni-indexed-list v-if="showDialogDrawer" :options="indexedList" @click="bindClick"></uni-indexed-list>
 		</uni-drawer>
 	</div>
 </template>
@@ -48,7 +48,8 @@
 				isRandom: false,
 				isChapte:false,
 				light:false,
-				indexedList: []
+				indexedList: [],
+				showDialogDrawer: false
 			}
 		},
 		onLoad() {
@@ -86,8 +87,12 @@
 				})
 				this.indexedList = arr
 			},
+			handledRawerChange(data) {
+				this.showDialogDrawer = data
+			},
 			bindClick() {},
 			showDrawer() {
+				console.log('this.$refs.showRight',this.$refs.showRight)
 				this.$refs.showRight.open();
 			},
 			closeDrawer() {
