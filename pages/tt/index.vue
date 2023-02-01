@@ -1,11 +1,12 @@
 <template>
 	<div class="content">
 		<div class="header">
-			{{ currentIndex }} -{{ dict.length }}
+			{{ currentIndex }} -{{ dict.length - 1 }}
 			<button size="mini"  @click="handleToogleAudio" :type="autoplay?'primary':'default'">{{autoplay?'已开':'已关'}}音频</button>
 			<button size="mini"  @click="handleToogleRandom" :type="isRandom?'primary':'default'">{{isRandom?'已开':'已关'}}随机</button>
 			<button size="mini"  @click="handleLight" :type="light?'primary':'default'">{{light?'开了灯':'关了灯'}}</button>
 			<input type="text" @blur="handleChapte" :placeholder="`${isChapte?'已开':'已关'}章节`">
+			<button size="mini" @click="showDrawer">抽屉</button>
 		</div>
 		<div class="text-area" :class="light?'open':''">
 			<p class="title text" @click="handleClip(currentItem.name)">{{currentItem.name}}</p>
@@ -18,6 +19,11 @@
 			@touchmove="touchMove" 
 			@touchend="touchEnd" >
 		</div>
+
+		<!-- 抽屉 -->
+		<uni-drawer  ref="showRight" mode="right" :mask-click="true" width="300">
+			<uni-indexed-list v-if="indexedList.length" :options="indexedList" @click="bindClick"></uni-indexed-list>
+		</uni-drawer>
 	</div>
 </template>
 
@@ -34,7 +40,7 @@
 		data() {
 			return {
 				title: 'Hello',
-				dict: Object.freeze(dict),
+				dict: Object.freeze(dict || []),
 				currentIndex: 0,
 				audioIndex: 0,
 				autoplay: false,
@@ -42,6 +48,7 @@
 				isRandom: false,
 				isChapte:false,
 				light:false,
+				indexedList: []
 			}
 		},
 		onLoad() {
@@ -59,6 +66,32 @@
 			init() {
 				this.getCurrentKey() // 获取序列最新key
 				this.initAudio() // 初始音频
+				this.handleindexedList()
+			},
+			handleindexedList() {
+				let letter
+				let arr = []
+				this.dict.forEach(item => {
+					if(letter && letter === item.chapte) {
+						arr[arr.length-1].data.push(`${item.name}   ${item.trans}`)
+					}else {
+						letter = item.chapte
+						arr.push({
+							"letter": item.chapte,
+							"data": [
+								`${item.name}   ${item.trans}`
+							]
+						})
+					}
+				})
+				this.indexedList = arr
+			},
+			bindClick() {},
+			showDrawer() {
+				this.$refs.showRight.open();
+			},
+			closeDrawer() {
+				this.$refs.showRight.close();
 			},
 			initAudio() {
 				this.innerAudioContext = uni.createInnerAudioContext();
@@ -216,7 +249,7 @@
 	} 
 
 	.text-area {
-		opacity: 0.1;
+		opacity: 0;
 		&.open {
 			opacity: 1;
 		}
