@@ -27,6 +27,13 @@ export default {
       focus:false
     }
   },
+  created() {
+   if(uni.getDeviceInfo().deviceBrand.toUpperCase() === 'XIAOMI') {
+    uni.navigateTo({
+      url: '/pages/home/index'
+    })
+   }
+  },
   methods: {
     clear() {
       this.name = this.trans = this.root = this.associate = ''

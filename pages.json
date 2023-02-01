@@ -1,11 +1,18 @@
 {
 	"pages": [
 		{
-			"path": "pages/tt/index"
-		},
-		{
 			"path": "pages/edit"
 		}
+	],
+	"subpackages": [
+		{
+      "root": "pages/home",
+      "pages": [
+        {
+					"path": "index"
+				}
+      ]
+    }
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
