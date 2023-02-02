@@ -68,4 +68,15 @@
     "r": "vent",
     "desc": "走",
   }, 
+
+  {
+    "chapte": "12",
+    "r": "vis=vid",
+    "desc": "看",
+  },
+  {
+    "chapte": "12",
+    "r": "spect=spec",
+    "desc": "看",
+  },
 ]
