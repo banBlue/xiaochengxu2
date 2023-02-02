@@ -73,13 +73,14 @@
 			handleindexedList() {
 				let letter
 				let arr = []
-				this.dict.forEach(item => {
+				this.dict.forEach((item,index) => {
 					if(letter && letter === item.chapte) {
 						arr[arr.length-1].data.push(`${item.name}${this.concatSign}${item.trans}`)
 					}else {
 						letter = item.chapte
 						arr.push({
 							"letter": item.chapte,
+							"recordIndex": index,
 							"data": [
 								`${item.name}${this.concatSign}${item.trans}`
 							]
@@ -89,11 +90,11 @@
 				this.indexedList = arr
 			},
 			handledRawerChange(data) {
-				this.showDialogDrawer = data
+					this.showDialogDrawer = data								
 			},
 			bindClick(e) {
-				this.isChapte = true
-				this.handleNext(Number(e.item.itemIndex))
+				let {key,name} = e.item
+				this.handleChapte({detail:{value:key,_name:name.split(this.concatSign)[0]}})
 			},
 			showDrawer() {
 				console.log('this.$refs.showRight',this.$refs.showRight)
@@ -136,17 +137,11 @@
 					return
 				}
 
-				if(typeof type === 'string') {
-					if(type === 'next') {
-						this.currentIndex = this.currentIndex + 1 >= this.dict.length ? 0 : ++this.currentIndex
-					} else {
-						this.currentIndex =  this.currentIndex - 1 < 0? this.dict.length - 1 : --this.currentIndex
-					}		
-				}
-
-				if(typeof type === 'number') {
-					this.currentIndex = type
-				}
+				if(type === 'next') {
+					this.currentIndex = this.currentIndex + 1 >= this.dict.length ? 0 : ++this.currentIndex
+				} else {
+					this.currentIndex =  this.currentIndex - 1 < 0? this.dict.length - 1 : --this.currentIndex
+				}		
 						
 				this.autoplay && this.playAudio()
 				!this.showDialogDrawer && !this.isChapte && uni.setStorageSync(CURRENT_KEY,this.currentIndex)
@@ -172,8 +167,15 @@
 				for (let index = 0; index < this.dict.length; index++) {
 					const item = this.dict[index]
 					if(+item.chapte === +event.detail.value) {
-						this.currentIndex = index
-						break
+						if(event.detail._name) {
+							if(event.detail._name === item.name) {
+								this.currentIndex = index
+								break
+							}
+						}else {
+							this.currentIndex = index
+							break
+						}
 					}					
 				}
 				event.detail.value = ''
