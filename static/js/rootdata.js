@@ -124,5 +124,11 @@ export default {
       "r": "soci",
       "desc": "联合",
     },
-  ]
+  ],
+  '18': [
+    {      
+      "r": "ply=ploy",
+      "desc": "折叠=卷入",
+    },
+  ],
 }

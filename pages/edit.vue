@@ -3,8 +3,8 @@
     <input :focus="focus" id="input-name" class="uni-input" ref="refName" placeholder="name" v-model="name" confirm-type="search" @confirm="add"/>
     <input  class="uni-input" placeholder="trans" v-model="trans" confirm-type="search" @confirm="add"/>
     <input class="uni-input" placeholder="associate" v-model="associate" confirm-type="search" @confirm="add"/> 
-    <input class="uni-input" placeholder="root" v-model="root" confirm-type="search" @confirm="add"/>     
-    <button @click="add">d</button>
+    <!-- <input class="uni-input" placeholder="root" v-model="root" confirm-type="search" @confirm="add"/>     
+    <button @click="add">d</button> -->
 
     <input class="uni-input" placeholder="chapte" v-model="chapte" confirm-type="search"/>  
 
