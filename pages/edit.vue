@@ -29,7 +29,7 @@ export default {
   },
   created() {
    if(uni.getDeviceInfo().deviceBrand.toUpperCase() === 'XIAOMI') {
-    uni.navigateTo({
+    uni.redirectTo({
       url: '/pages/home/index'
     })
    }

@@ -6,8 +6,12 @@
 			<button size="mini"  @click="handleToogleRandom" :type="isRandom?'primary':'default'">{{isRandom?'已开':'已关'}}随机</button>
 			<button size="mini"  @click="handleLight" :type="light?'primary':'default'">{{light?'开了灯':'关了灯'}}</button>
 			<button size="mini" @click="showDrawer">抽屉</button>
-			<input type="text" @blur="handleChapte" :placeholder="`${isChapte?'已开':'已关'}节`">			
+			<input type="text" @blur="handleChapte" :placeholder="`${isChapte?'已开':'已关'}节`">
+			<div class="root-data" :class="light?'open':''">
+				<span v-for="item in getRootdata">({{ item.r + '-' +item.desc}}) </span>
+			</div>			
 		</div>
+		
 		<div class="text-area" :class="light?'open':''">
 			<p class="title text" @click="handleClip(currentItem.name)">{{currentItem.name}}</p>
 			<p class="trans text">{{ currentItem.trans }}</p>
@@ -29,6 +33,7 @@
 
 <script>
 	import dict from "../../static/js/data.js"
+	import rootdata from "../../static/js/rootdata.js"
 	const CURRENT_KEY = 'dict_current_key'
 	var touchStartX = 0;//触摸时的原点  
 	var touchStartY = 0;//触摸时的原点  
@@ -41,6 +46,7 @@
 			return {
 				title: 'Hello',
 				dict: Object.freeze(dict || []),
+				
 				currentIndex: 0,
 				audioIndex: 0,
 				autoplay: false,
@@ -63,6 +69,10 @@
 			currentItem () {
 				return this.dict[this.currentIndex]
 			},
+			getRootdata () {
+				const data = rootdata[`${this.currentItem.chapte}`]	|| []
+				return data			 
+			}
 		},
 		methods: {
 			init() {
@@ -251,6 +261,13 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+	}
+
+	.root-data {
+		opacity: 0;
+		&.open {
+			opacity: 1;
+		}
 	}
 
 	.duration-touch-view {
