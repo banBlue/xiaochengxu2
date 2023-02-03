@@ -102,5 +102,27 @@ export default {
       "r": "amb",
       "desc": "走",
     },
+  ],
+  '17': [
+    {      
+      "r": "pet",
+      "desc": "追求",
+    },
+		{      
+      "r": "ped",
+      "desc": "脚",
+    },
+		{      
+      "r": "ply=ploy",
+      "desc": "卷入,折叠",
+    },
+    {      
+      "r": "sess=sit",
+      "desc": "坐",
+    },
+    {      
+      "r": "soci",
+      "desc": "联合",
+    },
   ]
 }
