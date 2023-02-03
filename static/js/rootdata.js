@@ -96,5 +96,11 @@ export default {
       "r": "loc",
       "desc": "位置-place",
       },
+  ],
+  '16': [
+    {      
+      "r": "amb",
+      "desc": "走",
+    },
   ]
 }
