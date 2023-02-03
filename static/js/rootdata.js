@@ -86,5 +86,15 @@ export default {
       "r": "leg=lect",
       "desc": "收集,选择",
     },
+  ],
+  '15': [
+    {      
+      "r": "erg",
+      "desc": "做工,工作-work",
+      },
+      {      
+      "r": "loc",
+      "desc": "位置-place",
+      },
   ]
 }
