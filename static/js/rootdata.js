@@ -49,6 +49,24 @@ export default {
       "desc": "采用",
     },
   ],
+  '10': [
+    {      
+      "r": "just",
+      "desc": "公正",
+    },
+    {      
+      "r": "dress=direct",
+      "desc": "直",
+    }, 
+    {      
+      "r": "rect",
+      "desc": "正，直",
+    }, 
+    {      
+      "r": "equa",
+      "desc": "相等",
+    },
+  ],
   '11': [
     {      
       "r": "mit=miss",
@@ -129,6 +147,20 @@ export default {
     {      
       "r": "ply=ploy",
       "desc": "折叠=卷入",
+    },
+  ],
+  '39': [
+    {      
+      "r": "flu",
+      "desc": "流动",
+    },
+    {      
+      "r": "flex",
+      "desc": "弯曲",
+    },
+    {      
+      "r": "fund",
+      "desc": "基础，底部",
     },
   ],
 }
