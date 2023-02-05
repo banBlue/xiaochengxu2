@@ -66,6 +66,10 @@ export default {
       "r": "equa",
       "desc": "相等",
     },
+    {      
+      "r": "mini",
+      "desc": "小，少",
+    },
   ],
   '11': [
     {      
