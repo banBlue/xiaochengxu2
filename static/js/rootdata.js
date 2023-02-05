@@ -109,6 +109,12 @@ export default {
       "desc": "收集,选择",
     },
   ],
+  '14': [
+    {      
+      "r": "gress=grad",
+      "desc": "步，级",
+      },
+  ],
   '15': [
     {      
       "r": "erg",
