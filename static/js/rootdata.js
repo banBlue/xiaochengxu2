@@ -179,4 +179,14 @@ export default {
       "desc": "基础，底部",
     },
   ],
+  '40': [
+    {      
+      "r": "gar=gard=war=ward",
+      "desc": "看,看管,看护",
+    },
+    {      
+      "r": "gen",
+      "desc": "生育",
+    },
+  ],
 }
