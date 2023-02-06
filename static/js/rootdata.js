@@ -165,6 +165,28 @@ export default {
       "desc": "站立",
     },
   ],
+  '20': [
+    {      
+      "r": "astro=aster",
+      "desc": "星星",
+    },
+    {      
+      "r": "sum=cept",
+      "desc": "拿",
+    },
+    {      
+      "r": "tain",
+      "desc": "持,握(hold)",
+    },
+    {      
+      "r": "tempt=tend=tent=tens",
+      "desc": "延伸",
+    },
+    {      
+      "r": "some",
+      "desc": "形容词后缀",
+    },
+  ],
   '39': [
     {      
       "r": "flu",
@@ -190,3 +212,4 @@ export default {
     },
   ],
 }
+
