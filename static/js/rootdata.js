@@ -245,5 +245,25 @@ export default {
       "desc": "生",
     },
   ],
+  '43': [
+    {      
+      "r": "man",
+      "desc": "手",
+    },
+    {      
+      "r": "mob=mov=mot",
+      "desc": "移动",
+    },
+    {      
+      "r": "memor=mem",
+      "desc": "记忆",
+    },
+  ],
+  '44': [
+    {      
+      "r": "pass",
+      "desc": "痛苦",
+    },
+  ],
 }
 
