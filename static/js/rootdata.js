@@ -193,6 +193,28 @@ export default {
       "desc": "二",
     },
   ],
+  '24': [
+    {      
+      "r": "bio",
+      "desc": "生命",
+    },
+    {      
+      "r": "logy",
+      "desc": "学说",
+    },
+    {      
+      "r": "eco",
+      "desc": "家",
+    },
+    {      
+      "r": "graphy=graph=gram",
+      "desc": "写,描述",
+    },
+    {      
+      "r": "tele",
+      "desc": "远",
+    },
+  ],
   '39': [
     {      
       "r": "flu",
