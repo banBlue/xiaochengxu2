@@ -231,6 +231,28 @@ export default {
       "desc": "圆",
     },
   ],
+  '30': [
+    {      
+      "r": "con=com",
+      "desc": "聚集-共同 强调",
+    },
+    {      
+      "r": "clud-clus",
+      "desc": "关闭",
+    },
+    {      
+      "r": "duct=duc",
+      "desc": "引导",
+    },
+    {      
+      "r": "fer",
+      "desc": "携带,拿",
+    },
+    {
+      "r": "fid",
+      "desc": "信任",
+    },
+  ],
   '39': [
     {      
       "r": "flu",
