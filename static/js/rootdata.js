@@ -281,6 +281,42 @@ export default {
       "desc": "流 跑",
     },
   ],
+  '33': [
+    {      
+      "r": "dec",
+      "desc": "十(十全十美)",
+    },
+    {      
+      "r": "fenc=fend",
+      "desc": "打击",
+    },
+  ],
+  '34': [
+    {      
+      "r": "de",
+      "desc": "离开或向下 强调",
+    },
+    {      
+      "r": "liver=liber",
+      "desc": "自由 释放",
+    },
+    {      
+      "r": "pend=pens",
+      "desc": "悬挂 支付(放出去)",
+    },
+    {      
+      "r": "scrib=script",
+      "desc": "写",
+    },
+    {      
+      "r": "term",
+      "desc": "界限",
+    },
+    {      
+      "r": "tect",
+      "desc": "掩盖",
+    },
+  ],
   '39': [
     {      
       "r": "flu",
