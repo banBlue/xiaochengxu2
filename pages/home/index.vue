@@ -294,7 +294,7 @@
 			text-align: center;
 		}
 		.title {
-			font-size: 36px;
+			font-size: 40px;
 			margin-bottom: 20px;
 		}
 		.trans {
