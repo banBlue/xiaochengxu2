@@ -289,12 +289,12 @@
 			opacity: 1;
 		}
 		>.text {
-			margin-bottom: 15px;
+			margin-bottom: 40px;
 			font-size: 20px;
 			text-align: center;
 		}
 		.title {
-			font-size: 40px;
+			font-size: 44px;
 			margin-bottom: 20px;
 		}
 		.trans {
