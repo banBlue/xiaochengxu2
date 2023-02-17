@@ -323,6 +323,12 @@ export default {
       "desc": "携带 运输",
     },
   ],
+  '36': [
+    {      
+      "r": "volut=volv",
+      "desc": "卷动",
+    },
+  ],
   '39': [
     {      
       "r": "flu",
