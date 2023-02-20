@@ -1,12 +1,17 @@
 <template>
 	<div class="content">
 		<div class="header">
-			{{ currentIndex }} -{{ dict.length - 1 }}
-			<button size="mini"  @click="handleToogleAudio" :type="autoplay?'primary':'default'">{{autoplay?'已开':'已关'}}音频</button>
-			<button size="mini"  @click="handleToogleRandom" :type="isRandom?'primary':'default'">{{isRandom?'已开':'已关'}}随机</button>
-			<button size="mini"  @click="handleLight" :type="light?'primary':'default'">{{light?'开了灯':'关了灯'}}</button>
-			<button size="mini" @click="showDrawer">抽屉</button>
-			<input type="text" @blur="handleChapte" :placeholder="`${isChapte?'已开':'已关'}节`">
+			<template v-if="noSilent">
+				{{ currentIndex }} -{{ dict.length - 1 }}
+				<button size="mini"  @click="handleToogleAudio" :type="autoplay?'primary':'default'">{{autoplay?'已开':'已关'}}音频</button>
+				<button size="mini"  @click="handleToogleRandom" :type="isRandom?'primary':'default'">{{isRandom?'已开':'已关'}}随机</button>
+				<button size="mini"  @click="handleLight" :type="light?'primary':'default'">{{light?'开了灯':'关了灯'}}</button>
+				<button size="mini" @click="showDrawer">抽屉</button>
+				<input type="text" @blur="handleChapte" :placeholder="`${isChapte?'已开':'已关'}节`">
+				<input type="text"  v-model="ms" placeholder="定时器时间">
+			</template>
+			<button size="mini"  @click="handleAuto" :type="timeID?'primary':'default'">{{timeID?'自动':'手动'}}</button>
+			
 			<div class="root-data" :class="light?'open':''">
 				<span v-for="item in getRootdata">({{ item.r + '-' +item.desc}}) </span>
 			</div>			
@@ -56,7 +61,10 @@
 				light:false,
 				indexedList: [],
 				showDialogDrawer: false,
-				concatSign: `          `
+				concatSign: `          `,
+				timeID:null,
+				ms:3000,
+				noSilent:true,
 			}
 		},
 		onLoad() {
@@ -80,6 +88,16 @@
 				this.initAudio() // 初始音频
 				this.handleindexedList()
 			},
+			handleAuto() {
+				if(this.timeID) {
+					clearInterval(this.timeID)
+					this.timeID = null
+				}else {
+					this.timeID = setInterval(() => {
+						this.handleNext('next')
+					},Number(this.ms))
+				}
+			},			
 			handleindexedList() {
 				let letter
 				let arr = []
@@ -231,15 +249,20 @@
 					// 向上滑动
 					if (touchMoveY - touchStartY <= -30 && time < 10) {
 						console.log("向上滑动")
+						this.noSilent = !this.noSilent
 					}
 					// 向下滑动  
 					if (touchMoveY - touchStartY >= 30 && time < 10) {
 						this.playAudio()
 					}
 				}else {// 左右
+					if(this.timeID) {
+						this.handleAuto()
+						return
+					}
 					// 向左滑动
 					if (touchMoveX - touchStartX <= -30 && time < 10) {
-						console.log("左滑页面")
+						console.log("左滑页面")						
 						this.handleNext('next')
 					}
 					// 向右滑动  
@@ -294,7 +317,7 @@
 			text-align: center;
 		}
 		.title {
-			font-size: 44px;
+			font-size: 46px;
 			margin-bottom: 20px;
 		}
 		.trans {
@@ -322,7 +345,7 @@
 	}
 
 	.title {
-		font-size: 36rpx;
+		font-size: 46px;
 		// color: #8f8f94;
 		color:black;
 	}
