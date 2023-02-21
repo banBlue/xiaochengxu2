@@ -11,6 +11,7 @@
 				<input type="text"  v-model="ms" placeholder="定时器时间">
 			</template>
 			<button size="mini"  @click="handleAuto" :type="timeID?'primary':'default'">{{timeID?'自动':'手动'}}</button>
+			<button size="mini"  @click="handleErrorWord" :type="caleIndex?'primary':'default'">{{caleIndex?'错':'all'}}</button>
 			
 			<div class="root-data" :class="light?'open':''">
 				<span v-for="item in getRootdata">({{ item.r + '-' +item.desc}}) </span>
@@ -50,7 +51,8 @@
 		data() {
 			return {
 				title: 'Hello',
-				dict: Object.freeze(dict || []),
+				allDict: Object.freeze(dict),
+				dict: Object.freeze(dict),
 				
 				currentIndex: 0,
 				audioIndex: 0,
@@ -65,6 +67,7 @@
 				timeID:null,
 				ms:3000,
 				noSilent:true,
+				autoRecorderList:[]
 			}
 		},
 		onLoad() {
@@ -80,6 +83,9 @@
 			getRootdata () {
 				const data = rootdata[`${this.currentItem.chapte}`]	|| []
 				return data			 
+			},
+			caleIndex() {
+				return this.allDict.length !== this.dict.length
 			}
 		},
 		methods: {
@@ -87,6 +93,17 @@
 				this.getCurrentKey() // 获取序列最新key
 				this.initAudio() // 初始音频
 				this.handleindexedList()
+			},
+			handleErrorWord() {
+				if(this.allDict.length === this.dict.length) {
+					if(this.autoRecorderList.length) {
+						this.currentIndex = 0
+						this.dict = this.autoRecorderList
+					}
+				}else {
+					this.autoRecorderList = []
+					this.dict = Object.freeze(this.allDict)
+				}
 			},
 			handleAuto() {
 				if(this.timeID) {
@@ -252,7 +269,10 @@
 						this.noSilent = !this.noSilent
 					}
 					// 向下滑动  
-					if (touchMoveY - touchStartY >= 30 && time < 10) {
+					if (touchMoveY - touchStartY >= 30 && time < 10) {		
+						if(this.allDict.length === this.dict.length) {
+							this.autoRecorderList.push(this.currentItem)
+						}
 						this.playAudio()
 					}
 				}else {// 左右
