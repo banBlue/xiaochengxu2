@@ -72,7 +72,7 @@
 				concatSign: `          `,
 				timeID:null,
 				ms:3,
-				noSilent:false,
+				noSilent:true,
 				autoRecorderList:[],				
 				dataRoot: [],
 				showRed:false,
@@ -82,6 +82,9 @@
 
 		},
 		created() {
+      if(uni.getDeviceInfo().deviceBrand.toUpperCase() === 'XIAOMI') {
+        this.light = true
+      }      
 			this.init()
 		},
 		computed: {
