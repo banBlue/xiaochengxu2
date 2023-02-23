@@ -103,7 +103,7 @@
 			handleGame() {
 				this.dataRoot = []
 				for (var i = 0; i < 30; i++) {
-          const _index =Math.floor(Math.random()*this.dict.length)
+          const _index =Math.floor(Math.random()*this.allDict.length)
 					this.dataRoot.push({_index,...this.allDict[_index]})
 				}
 				this.showRed = true
