@@ -106,10 +106,9 @@
 				this.showRed = true
 			},
 			gameEnd(arr) {
-        console.log(arr)
 				this.autoRecorderList = arr.map(item => this.allDict[item._index])
 				this.showRed = false
-        this.handleErrorWord()
+				this.handleErrorWord()
 			},
 			init() {
 				this.getCurrentKey() // 获取序列最新key
@@ -134,7 +133,7 @@
 				}else {
 					this.timeID = setInterval(() => {
 						this.handleNext('next')
-					},Number(this.ms / 1000))
+					},Number(this.ms * 1000))
 				}
 			},			
 			handleindexedList() {
