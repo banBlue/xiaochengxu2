@@ -11,10 +11,10 @@
 				<input type="text"  v-model="ms" placeholder="定时器时间">
 			</template>
 			<button size="mini"  @click="handleAuto" :type="timeID?'primary':'default'">{{timeID?'自动':'手动'}}</button>
-			<button size="mini"  @click="handleErrorWord" :type="caleIndex?'primary':'default'">{{caleIndex?'错':'all'}}</button>
-			
+			<button size="mini"  @click="handleErrorWord" :type="caleIndex?'primary':'default'">{{caleIndex?`错${dict.length}`:'all'}}</button>
+			<button size="mini"  @click="handleGame" >游戏模式</button>
 			<div class="root-data" :class="light?'open':''">
-				<span v-for="item in getRootdata">({{ item.r + '-' +item.desc}}) </span>
+				<span v-for="(item,index) in getRootdata" :key="index">({{ item.r + '-' +item.desc}}) </span>
 			</div>			
 		</div>
 		
@@ -34,10 +34,13 @@
 		<uni-drawer  ref="showRight" mode="right" :mask-click="true" width="300" @change="handledRawerChange">
 			<uni-indexed-list v-if="showDialogDrawer" :options="indexedList" @click="bindClick"></uni-indexed-list>
 		</uni-drawer>
+		
+		<red :dataRoot="dataRoot" :ms="ms" @gameEnd="gameEnd" v-if="showRed"></red>
 	</div>
 </template>
 
 <script>
+  import red from "../home/components/red.vue"
 	import dict from "../../static/js/data.js"
 	import rootdata from "../../static/js/rootdata.js"
 	const CURRENT_KEY = 'dict_current_key'
@@ -48,6 +51,9 @@
 	var touchMoveX = 0; // x轴方向移动的距离
 	var touchMoveY = 0; // y轴方向移动的距离
 	export default {
+		components: {
+			red
+		},
 		data() {
 			return {
 				title: 'Hello',
@@ -65,9 +71,11 @@
 				showDialogDrawer: false,
 				concatSign: `          `,
 				timeID:null,
-				ms:3000,
-				noSilent:true,
-				autoRecorderList:[]
+				ms:3,
+				noSilent:false,
+				autoRecorderList:[],				
+				dataRoot: [],
+				showRed:false,
 			}
 		},
 		onLoad() {
@@ -89,6 +97,20 @@
 			}
 		},
 		methods: {
+			handleGame() {
+				this.dataRoot = []
+				for (var i = 0; i < 30; i++) {
+          const _index =Math.floor(Math.random()*this.dict.length)
+					this.dataRoot.push({_index,...this.allDict[_index]})
+				}
+				this.showRed = true
+			},
+			gameEnd(arr) {
+        console.log(arr)
+				this.autoRecorderList = arr.map(item => this.allDict[item._index])
+				this.showRed = false
+        this.handleErrorWord()
+			},
 			init() {
 				this.getCurrentKey() // 获取序列最新key
 				this.initAudio() // 初始音频
@@ -112,7 +134,7 @@
 				}else {
 					this.timeID = setInterval(() => {
 						this.handleNext('next')
-					},Number(this.ms))
+					},Number(this.ms / 1000))
 				}
 			},			
 			handleindexedList() {
@@ -347,7 +369,7 @@
 
 		}
 		.associate {
-
+      margin-bottom: 0px;
 		}
 	}
 
