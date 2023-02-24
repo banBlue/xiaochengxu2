@@ -57,8 +57,8 @@
 		data() {
 			return {
 				title: 'Hello',
-				allDict: Object.freeze(dict),
-				dict: Object.freeze(dict),
+				allDict: dict,
+				dict: dict,
 				
 				currentIndex: 0,
 				audioIndex: 0,
@@ -126,7 +126,7 @@
 					}
 				}else {
 					this.autoRecorderList = []
-					this.dict = Object.freeze(this.allDict)
+					this.dict = this.allDict
 				}
 			},
 			handleAuto() {

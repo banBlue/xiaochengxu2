@@ -33,7 +33,7 @@
       });
       let w = (Math.random() * 90) + 120
       this.dataRoot.forEach((item) => {
-        this.baseTime = this.baseTime + this.ms
+        this.baseTime = this.baseTime + Number(this.ms)
         let durTime =  this.baseTime + 's' // 时间
         let left = parseInt(Math.random() * win)
         if (left < 0) {
@@ -81,7 +81,7 @@
     }
 
     100% {
-      transform: translateY(120vh);
+      transform: translateY(117vh);
     }
   }
 	.content{
