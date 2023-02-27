@@ -1,8 +1,9 @@
 <template>
   <div class="content">
     <button size="mini" class="btn"  @click="removeDom('over')" >{{'终止'}}</button>
+    <div class="tips" @click="updateIndex" v-if="tipsIndex >=0 ">{{liParams[tipsIndex].trans || ''}}</div>
 		<div class="class" v-for="(item, index) in liParams" :key="index">
-      <div class="package" :class="{'good':item.status === 'good'}" :style="{ left: item.left, animationDuration: item.durTime,animationDuration: item.durTime,}" @animationend="removeDom(index)" @click="handleClick(item)" >
+      <div class="package" :class="{'good':item.status === 'good'}" :style="{ left: item.left, animationDuration: item.durTime,animationDuration: item.durTime,}" @animationend="removeDom(index)" @click="handleClick(item,index)" >
         {{item.text}}
       </div>
     </div>
@@ -20,7 +21,8 @@
     data() {
       return {
         baseTime:0,
-        liParams: []
+        liParams: [],
+        tipsIndex: undefined
       }
     },
     mounted() {
@@ -47,6 +49,7 @@
           durTime: durTime,
           text:item.name,
           _index:item._index,
+          trans:item.trans,
           status: '', //未被点击  点击了:good
         })
       })
@@ -67,9 +70,13 @@
           this.$emit("gameEnd",this.liParams.filter(item => item.status !== 'good'))
         }
       },
-      handleClick(item) {
+      handleClick(item,index) {
         item.status = 'good'
-      }
+        this.tipsIndex = index
+      },
+      updateIndex() {
+        this.liParams[this.tipsIndex].status = ''
+      },
     }
   }
 </script>
@@ -83,6 +90,14 @@
     100% {
       transform: translateY(117vh);
     }
+  }
+  .tips {
+    position: fixed;
+    top: 15rpx;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10rpx;
+    background: #fffaf1;
   }
 	.content{
     position: fixed;
