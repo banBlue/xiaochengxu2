@@ -101,6 +101,7 @@
 		},
 		methods: {
 			handleGame() {
+        this.handleErrorWord()
 				this.dataRoot = []
 				for (var i = 0; i < 30; i++) {
           const _index =Math.floor(Math.random()*this.allDict.length)
