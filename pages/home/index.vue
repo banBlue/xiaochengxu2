@@ -101,6 +101,7 @@
 		},
 		methods: {
 			handleGame() {
+        this.autoplay = false
         this.handleErrorWord()
 				this.dataRoot = []
 				for (var i = 0; i < 35; i++) {
