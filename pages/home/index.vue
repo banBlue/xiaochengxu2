@@ -57,9 +57,8 @@
 		data() {
 			return {
 				title: 'Hello',
-				allDict: dict,
-				dict: dict,
-				
+				allDict: [],
+				dict: [],				
 				currentIndex: 0,
 				audioIndex: 0,
 				autoplay: false,
@@ -81,15 +80,22 @@
 		onLoad() {
 
 		},
-		created() {
+		async created() {
       if(uni.getDeviceInfo().deviceBrand.toUpperCase() === 'XIAOMI') {
         this.light = true
-      }      
+      }
+      uni.showLoading({
+        title: '加载中'
+      });
+      const data = await this._getAllEnglish()
+      uni.hideLoading()
+      this.allDict = data
+      this.dict = data
 			this.init()
 		},
 		computed: {
 			currentItem () {
-				return this.dict[this.currentIndex]
+				return this.dict[this.currentIndex] || {}
 			},
 			getRootdata () {
 				const data = rootdata[`${this.currentItem.chapte}`]	|| []
@@ -100,6 +106,19 @@
 			}
 		},
 		methods: {
+      async _getAllEnglish() {
+        return new Promise(res => {
+          uni.request({          
+            url:'https://banblue.github.io/data.js',
+            timeout:30000,
+            complete({data}) {
+              console.log(`--DEBUG--data`,data)
+              Array.isArray(data) ? res(data): res(dict)
+            }
+          })
+        })
+        
+      },
 			handleGame() {
         this.autoplay = false
         this.handleErrorWord()
