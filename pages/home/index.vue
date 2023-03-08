@@ -9,6 +9,7 @@
 				<button size="mini" @click="showDrawer">抽屉</button>
 				<input type="text" @blur="handleChapte" :placeholder="`${isChapte?'已开':'已关'}节`">
 				<input type="text"  v-model="ms" placeholder="定时器时间">
+        <input type="number"  v-model="gameNumber" placeholder="游戏个数">
 			</template>
 			<button size="mini"  @click="handleAuto" :type="timeID?'primary':'default'">{{timeID?'自动':'手动'}}</button>
 			<button size="mini"  @click="handleErrorWord" :type="caleIndex?'primary':'default'">{{caleIndex?`错${dict.length}`:'all'}}</button>
@@ -75,6 +76,7 @@
 				autoRecorderList:[],				
 				dataRoot: [],
 				showRed:false,
+        gameNumber:38,
 			}
 		},
 		onLoad() {
@@ -112,7 +114,6 @@
             url:'https://banblue.github.io/data.js',
             timeout:30000,
             complete({data}) {
-              console.log(`--DEBUG--data`,data)
               Array.isArray(data) ? res(data): res(dict)
             }
           })
@@ -123,7 +124,7 @@
         this.autoplay = false
         this.handleErrorWord()
 				this.dataRoot = []
-				for (var i = 0; i < 35; i++) {
+				for (var i = 0; i < this.gameNumber; i++) {
           const _index =Math.floor(Math.random()*this.allDict.length)
 					this.dataRoot.push({_index,...this.allDict[_index]})
 				}

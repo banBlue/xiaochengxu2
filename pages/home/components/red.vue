@@ -97,7 +97,8 @@
     left: 50%;
     transform: translateX(-50%);
     padding: 10rpx;
-    background: #fffaf1;
+    background: #8cffd8;
+    z-index: 4;
   }
 	.content{
     position: fixed;
