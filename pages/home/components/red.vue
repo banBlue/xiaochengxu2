@@ -91,14 +91,23 @@
       transform: translateY(117vh);
     }
   }
+  // .tips {
+  //   position: fixed;
+  //   top: 15rpx;
+  //   left: 50%;
+  //   transform: translateX(-50%);
+  //   padding: 10rpx;
+  //   background: #8cffd8;
+  //   z-index: 4;
+  // }
   .tips {
     position: fixed;
-    top: 15rpx;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 10rpx;
+    top: 64%;
+    right: 0;
+    padding: 20rpx;
     background: #8cffd8;
     z-index: 4;
+    min-width:120rpx;
   }
 	.content{
     position: fixed;
