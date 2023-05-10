@@ -7,6 +7,7 @@
 				<button size="mini"  @click="handleToogleRandom" :type="isRandom?'primary':'default'">{{isRandom?'已开':'已关'}}随机</button>
 				<button size="mini"  @click="handleLight" :type="light?'primary':'default'">{{light?'开了灯':'关了灯'}}</button>
 				<button size="mini" @click="showDrawer">抽屉</button>
+        <button size="mini" @click="handleBath">洗澡</button>
 				<input type="text" @blur="handleChapte" :placeholder="`${isChapte?'已开':'已关'}节`">
 				<input type="text"  v-model="ms" placeholder="定时器时间">
         <input type="number"  v-model="gameNumber" placeholder="游戏个数">
@@ -108,6 +109,12 @@
 			}
 		},
 		methods: {
+      handleBath() {
+        this.ms = 5
+        this.handleToogleAudio()
+        this.handleToogleRandom()
+        this.handleAuto()
+      },
       async _getAllEnglish() {
         return new Promise(res => {
           uni.request({          

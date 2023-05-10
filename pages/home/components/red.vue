@@ -22,7 +22,8 @@
       return {
         baseTime:0,
         liParams: [],
-        tipsIndex: undefined
+        tipsIndex: undefined,
+        innerAudioContext: null,
       }
     },
     mounted() {
@@ -53,9 +54,30 @@
           status: '', //未被点击  点击了:good
         })
       })
-      console.log('this.liParams',this.liParams)        
+      console.log('this.liParams',this.liParams)
+      this.initAudio() // 初始音频        
     },
     methods: {
+      playAudio() {
+
+				this.innerAudioContext.src = `http://dict.youdao.com/dictvoice?audio=${this.liParams[this.tipsIndex].text}`;
+				
+				this.innerAudioContext.onCanplay(() => {
+					console.log(`--DEBUG--加载完毕`,)
+					this.innerAudioContext.play()
+				})
+
+				this.innerAudioContext.onPlay(() => {
+					console.log('开始播放');
+				});
+				this.innerAudioContext.onError((res) => {
+					console.log(res.errMsg);
+					console.log(res.errCode);
+				});
+			},
+      initAudio() {
+				this.innerAudioContext = uni.createInnerAudioContext();
+			},
       removeDom(index) {
         if(index === 'over' || this.liParams.length - 1 === index) {
           uni.showToast({
@@ -73,6 +95,7 @@
       handleClick(item,index) {
         item.status = 'good'
         this.tipsIndex = index
+        this.playAudio()
       },
       updateIndex() {
         this.liParams[this.tipsIndex].status = ''
