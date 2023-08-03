@@ -1,7 +1,7 @@
 {
 	"pages": [
 		{
-			"path": "pages/edit"
+			"path": "pages/fn"
 		}
 	],
 	"subpackages": [
@@ -10,6 +10,14 @@
       "pages": [
         {
 					"path": "index"
+				}
+      ]
+    },
+    {
+      "root": "pages/other",
+      "pages": [
+        {
+					"path": "password"
 				}
       ]
     }
