@@ -15,7 +15,7 @@
       <p>{{currentData._dd}}</p>
       <button @click="handleCopy(currentData._dd)">复制</button>
       <p>{{currentData._io}}</p>
-      <button @click="handleCopy(urrentData._io)">复制</button>
+      <button @click="handleCopy(currentData._io)">复制</button>
     </div>
     <div class="line"></div>
     <div>
