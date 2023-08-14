@@ -7,8 +7,10 @@
         :localdata="range"
         @change="handleChange"
       ></uni-data-select>
+      寒战特别行动
       <input class="uni-input" password type="text" placeholder="key" placeholder-style="color:#F76260" v-model="rsaKey" />
       <input class="uni-input" password type="text" placeholder="key" placeholder-style="color:#F76260" v-model="rsaKey2" />
+      <input class="uni-input" password type="text" placeholder="key" placeholder-style="color:#F76260" v-model="rsaKey3" />
       <button @click="handleVaildKey">校验</button>
     </div>
     <div v-if="currentData._dd">
@@ -42,6 +44,7 @@ export default {
     return {
       rsaKey: '',
       rsaKey2: '',
+      rsaKey3: '',
       dataSelect: 0,
       range: [
       ],
@@ -80,9 +83,9 @@ export default {
             }
             return {
               value:index,
-              text: this.getRsaDeCode(this.rsaKey,this.rsaKey2,item.name),
-              _dd:this.getRsaDeCode(this.rsaKey,this.rsaKey2,item.dd),
-              _io:this.getRsaDeCode(this.rsaKey,this.rsaKey2,item.io),
+              text: this.getRsaDeCode(this.rsaKey,this.rsaKey2,this.rsaKey3,item.name),
+              _dd:this.getRsaDeCode(this.rsaKey,this.rsaKey2,this.rsaKey3,item.dd),
+              _io:this.getRsaDeCode(this.rsaKey,this.rsaKey2,this.rsaKey3,item.io),
             }
           });
         }
@@ -100,9 +103,9 @@ export default {
         dAgEIe02/69veDa36w9waa4OSJssMwz1fgq9eR7waMnsB7pjK83oo2vLByNf6FAr
         V6JWW/ECQQCAf/TF5ZBOM6qzL+Wxl7rxrkOCgapyTw3Z57LWoeZApCDydxprE/L/
         3pczowKh9BwgStf6EeBiaR67l38pVAZTAkB/fUXMcyktKjNGQbNBlCs9Tw+1kawa
-        418NjTQUn1WtpWv0C7QBPV69BhkEmhzMdeGQt6l6QLZr0p68bNnSqk6hAkBYX6fn
+        418NjTQUn1WtpWv0C7QBPV69B${key2}EmhzMdeGQt6l6QLZr0p68bNnSqk6hAkBYX6fn
         skncfowXUAmYadGYBVFIoASpONU916uXESFZs4c1OdRhcAbfEibKzIEzAL+XNeHz
-        iffXtpP8T+SUd8UhAkBnvg32MlcCyaXIRsxkELxTO8u0G1EFVi6ZE${key2}Qiu+P7whH5A
+        iffXtpP8T+SUd8UhAkBnvg32MlcCyaXIRsxkELxTO8u0G1EFVi6ZE${key3}Qiu+P7whH5A
         lPbeXaI1YvR93UXxzrdNByxwTuPMgwg2Q2eE7P2c
         -----END RSA PRIVATE KEY-----`
       const rsa = new WxmpRsa()
