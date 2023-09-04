@@ -77,8 +77,7 @@ export default {
         timeout:30000,
         complete:({data})=> {
           this.range = data.map((item,index) => {
-            if(index === 0 && !this.getRsaDeCode(this.rsaKey,this.rsaKey2,item.name)) {
-              console.log(`--DEBUG--1111`,)
+            if(index === 0 && !this.getRsaDeCode(this.rsaKey,this.rsaKey2,this.rsaKey3,item.name)) {
               uni.exitMiniProgram()
             }
             return {
