@@ -104,7 +104,7 @@
   }
 </script>
 
-<style scoped lang="scss">
+<style scoped >
 @keyframes aim_move {
     0% {
       transform: translateY(0);
@@ -114,15 +114,6 @@
       transform: translateY(117vh);
     }
   }
-  // .tips {
-  //   position: fixed;
-  //   top: 15rpx;
-  //   left: 50%;
-  //   transform: translateX(-50%);
-  //   padding: 10rpx;
-  //   background: #8cffd8;
-  //   z-index: 4;
-  // }
   .tips {
     position: fixed;
     top: 64%;
@@ -132,22 +123,15 @@
     z-index: 4;
     min-width:120rpx;
   }
-	.content{
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    background: #fee0b8;
-    z-index: 9980;
-    .btn {
-      position:absolute;
+
+  .content .btn {
+    position:absolute;
       left: 0;
       top: 0;
       z-index:2;
-    }
-    .package {
-      position: absolute;
+  }
+  .content .package {
+    position: absolute;
       animation: all 0s linear;
       top: -200rpx;
       z-index: 3;
@@ -156,9 +140,18 @@
       font-size: 36rpx;
       padding: 13rpx;
       line-height: 1.5;
-      &.good {
-        visibility: hidden;
-      }
-    }
+  }
+
+  .package.good {
+    visibility: hidden;
+  }
+	.content{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: #fee0b8;
+    z-index: 9980;
 	}
 </style>

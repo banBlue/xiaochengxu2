@@ -33,14 +33,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.fn{
-  .wrap {
-    .box {
-      line-height: 50px;
-      height: 50px;
-    }
-  }
-  
+<style lang="scss"  scoped>
+.box {
+  line-height: 50px;
+  height: 50px;
 }
 </style>

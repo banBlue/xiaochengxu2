@@ -7,7 +7,7 @@
         :localdata="range"
         @change="handleChange"
       ></uni-data-select>
-      寒战特别行动111
+      寒战特别行动159
       <input class="uni-input" password type="text" placeholder="key" placeholder-style="color:#F76260" v-model="rsaKey" />
       <input class="uni-input" password type="text" placeholder="key" placeholder-style="color:#F76260" v-model="rsaKey2" />
       <input class="uni-input" password type="text" placeholder="key" placeholder-style="color:#F76260" v-model="rsaKey3" />
@@ -130,18 +130,14 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.password{
-  .vaild-key {
-    .weui-input {
-      border: 1px;
-    }
-  }
-  .line {
-    height: 99px;
-  }
-  .danger {
-    color:azure;
-  }
+<style scoped>
+.weui-input {
+  border: 1px;
+}
+.line {
+  height: 99px;
+}
+.danger {
+  color:azure;
 }
 </style>

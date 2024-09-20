@@ -75,14 +75,12 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.edit{
-  .uni-input {
-    opacity: 0.2;
-    margin-bottom: 20px;
-  }
-  #input-name {
-    opacity: 0.3;
-  }
+<style scoped>
+.uni-input {
+  opacity: 0.2;
+  margin-bottom: 20px;
+}
+#input-name {
+  opacity: 0.3;
 }
 </style>

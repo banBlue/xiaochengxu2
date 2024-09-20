@@ -351,7 +351,7 @@
 	}
 </script>
 
-<style lang="scss">
+<style scoped>
 	.content {
 		display: flex;
 		flex-direction: column;
@@ -360,11 +360,12 @@
 	}
 
 	.root-data {
-		opacity: 0;
-		&.open {
-			opacity: 1;
-		}
+		opacity: 0;    
 	}
+
+  .root-data.open {
+    opacity: 1;
+  }
 
 	.duration-touch-view {
 		position: fixed;
@@ -379,29 +380,28 @@
 		margin-bottom: 160px;
 	} 
 
-	.text-area {
-		opacity: 0;
-		&.open {
-			opacity: 1;
-		}
-		>.text {
-			margin-bottom: 40px;
-			font-size: 20px;
-			text-align: center;
-		}
-		.title {
-			font-size: 46px;
+  .text-area.open {
+    opacity: 1;
+  }
+
+  .text-area .text {
+    margin-bottom: 40px;
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .text-area .title {
+    font-size: 46px;
 			margin-bottom: 20px;
 		}
-		.trans {
 
-		}
-		.root {
+  .text-area .associate {
+    margin-bottom: 0px;
+  }
 
-		}
-		.associate {
-      margin-bottom: 0px;
-		}
+
+	.text-area {
+		opacity: 0;		
 	}
 
 	.bottom {
@@ -409,17 +409,17 @@
 		bottom: 0px;
 		width: 100%;
 		background: pink;
-		display: flex;
-		.prev,.next,.audio {
+		display: flex;		
+	}
+
+  .prev,.next,.audio {
 			width: 100px;
 			height: 100px;
 			background: yellowgreen;
 		}
-	}
 
 	.title {
 		font-size: 46px;
-		// color: #8f8f94;
 		color:black;
 	}
 </style>
